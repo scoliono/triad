@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <vector>
+#include "dictionary.hpp"
 #include "triad.hpp"
 
 Triad::Triad(note_t root, quality_t qual, inversion_t inv)

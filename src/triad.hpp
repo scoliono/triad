@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "dictionary.hpp"
 
 // enums
 typedef enum Note {

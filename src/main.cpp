@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 #include "dictionary.hpp"
-#include "triad.cpp"
+#include "triad.hpp"
 
 note_t parse_note_name(std::string str)
 {
