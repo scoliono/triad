@@ -30,7 +30,7 @@ std::vector<note_t> Triad::notes(bool dont_reorder = false)
 {
 	note_t current_note = _root;
 	std::vector<note_t> notes_vec { current_note };
-	
+
 	auto intervals = Triad::intervals(_qual);
 	for (std::size_t i = 0; i < intervals.size(); i++)
 	{
@@ -65,7 +65,7 @@ std::string Triad::fmt_note_name(std::string natural_note, note_t triad_note)
 		diff = diff + 12;
 	}
 	char accidental = diff < 0 ? 'b' : '#';
-	std::string fmt = natural_note;	
+	std::string fmt = natural_note;
 	for (int i = 0; i < std::abs(diff); i++)
 	{
 		fmt += accidental;
@@ -88,12 +88,6 @@ std::vector<std::string> Triad::note_names(std::string root_fmt)
 
 std::vector<int> Triad::intervals(quality_t qual)
 {
-	const static std::map<quality_t, std::vector<int>> intervals_map {
-		{quality_t::MAJOR, {4, 3}},
-		{quality_t::MINOR, {3, 4}},
-		{quality_t::DIMINISHED, {3, 3}},
-		{quality_t::AUGMENTED, {4, 4}},
-	};
-	auto it = intervals_map.find(qual);
+	auto it = ::intervals_map.find(qual);
 	return it->second;
 }
