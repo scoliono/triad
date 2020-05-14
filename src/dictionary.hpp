@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
+#include <map>
 #include <vector>
+#include "triad.hpp"
 
 // dictionaries for our enums
 const static std::vector<std::string> notes {
