@@ -31,3 +31,6 @@ triad
 *.exe
 *.out
 *.app
+/.vs
+/Debug
+/Release
