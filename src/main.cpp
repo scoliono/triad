@@ -36,6 +36,49 @@ note_t parse_note_name(std::string str)
     return (note_t)(offset);
 }
 
+void print_staff(std::vector<std::string> notes_fmt)
+{
+    std::size_t line_i = 0;
+    int triad_i = notes_fmt.size() - 1;
+    // adding Note::G_SHARP basically means add an octave
+    for (int i = Note::G_SHARP * 2; i >= Note::C; i--)
+    {
+        std::string staff_note = notes[i % 11];
+        // only include natural notes in the staff
+        if (staff_note.size() >= 2)
+        {
+            continue;
+        }
+        std::string triad_note = triad_i < 0 ? " " : notes_fmt[triad_i];
+        // every good boy does fine :)
+        char line = (line_i % 2 == 0 && i >= Note::E && i <= Note::F + Note::G_SHARP) ? '=' : ' ';
+        bool has_note = triad_note[0] == staff_note[0];
+        std::cout << staff_note;
+        for (int j = 0; j < 10; j++)
+        {
+            if (has_note && j == 4 - triad_note.size() && triad_note.size() >= 2)
+            {
+                std::cout << triad_note.substr(1);
+                j += triad_note.size() - 2;
+            }
+            else if (has_note && j == 5)
+            {
+                std::cout << 'O';
+            }
+            else
+            {
+                std::cout << line;
+            }
+        }
+        std::cout << std::endl;
+        if (has_note && triad_i >= 0)
+        {
+            triad_i--;
+        }
+        line_i++;
+    }
+}
+
 template <class T>
 T random_item(std::vector<T> vec)
 {
@@ -105,5 +148,7 @@ int main(int argc, char** argv)
             std::cout << " ";
         }
     }
+    std::cout << std::endl;
+    print_staff(triad_notes);
     return 0;
 }
